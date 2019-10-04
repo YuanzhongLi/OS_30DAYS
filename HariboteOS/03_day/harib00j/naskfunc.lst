@@ -1,0 +1,10 @@
+     1 00000000                                 [FORMAT "WCOFF"]
+     2 00000000                                 [BITS 32]
+     3 00000000                                 
+     4 00000000                                 [FILE "naskfunc.nas"]
+     5 00000000                                     GLOBAL  _io_hlt
+     6 00000000                                 
+     7                                          [SECTION .text]
+     8 00000000                                 _io_hlt:
+     9 00000000 F4                                  HLT
+    10 00000001 C3                                  RET

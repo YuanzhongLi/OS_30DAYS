@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="67"
+   name=""
+   committed-date="2007-03-26T19:15:46.173537Z"
+   url="http://www.kju-app.org/svn/q/trunk/qcontrol/Resources/French.lproj/Q%20Help/html"
+   last-author="mike"
+   kind="dir"
+   uuid="8a1c316d-cb12-0410-9249-a228559feb5c"
+   repos="http://www.kju-app.org/svn/q"
+   revision="89"/>
+<entry
+   committed-rev="67"
+   name="diskImage.html"
+   text-time="2007-06-19T14:10:25.000000Z"
+   committed-date="2007-03-26T19:15:46.173537Z"
+   checksum="225c061491d5b489de3897c4d7f528eb"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:24.000000Z"/>
+<entry
+   committed-rev="67"
+   name="specs.html"
+   text-time="2007-06-19T14:10:25.000000Z"
+   committed-date="2007-03-26T19:15:46.173537Z"
+   checksum="d59d0c72a9f39b304e432e21ee60864a"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:24.000000Z"/>
+<entry
+   committed-rev="67"
+   name="navigation.html"
+   text-time="2007-06-19T14:10:25.000000Z"
+   committed-date="2007-03-26T19:15:46.173537Z"
+   checksum="b71b59a4c2e07764f515b2f81cbcd648"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:24.000000Z"/>
+<entry
+   committed-rev="67"
+   name="interface.html"
+   text-time="2007-06-19T14:10:25.000000Z"
+   committed-date="2007-03-26T19:15:46.173537Z"
+   checksum="5708adc4a8458c681336f17f570cd347"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:24.000000Z"/>
+<entry
+   committed-rev="67"
+   name="install.html"
+   text-time="2007-06-19T14:10:25.000000Z"
+   committed-date="2007-03-26T19:15:46.173537Z"
+   checksum="018ee8a7d8a084710a3dd8b3ef8adffa"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:24.000000Z"/>
+<entry
+   committed-rev="67"
+   name="editPC.html"
+   text-time="2007-06-19T14:10:25.000000Z"
+   committed-date="2007-03-26T19:15:46.173537Z"
+   checksum="167a93c3a0c8fdeec170e1f0733ea1cc"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:24.000000Z"/>
+<entry
+   committed-rev="67"
+   name="qemu-tech.html"
+   text-time="2007-06-19T14:10:25.000000Z"
+   committed-date="2007-03-26T19:15:46.173537Z"
+   checksum="a9fb19d7b6c16f3926245ff68c35ecb1"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:24.000000Z"/>
+<entry
+   committed-rev="67"
+   name="qemu-doc.html"
+   text-time="2007-06-19T14:10:25.000000Z"
+   committed-date="2007-03-26T19:15:46.173537Z"
+   checksum="6a24209efa7db313dd37c939be7fbb7e"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:25.000000Z"/>
+<entry
+   committed-rev="67"
+   name="cmdline.html"
+   text-time="2007-06-19T14:10:25.000000Z"
+   committed-date="2007-03-26T19:15:46.173537Z"
+   checksum="dbaf421082d0e59b0837bc7eb56ece92"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:25.000000Z"/>
+<entry
+   committed-rev="67"
+   name="welcome.html"
+   text-time="2007-06-19T14:10:25.000000Z"
+   committed-date="2007-03-26T19:15:46.173537Z"
+   checksum="d29727371a70b33f9f46b7c2d78534b1"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:25.000000Z"/>
+</wc-entries>

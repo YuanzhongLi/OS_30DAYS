@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="87"
+   name=""
+   committed-date="2007-05-25T16:04:23.363480Z"
+   url="http://www.kju-app.org/svn/q/trunk/qcontrol/Resources/English.lproj"
+   last-author="cordney"
+   kind="dir"
+   uuid="8a1c316d-cb12-0410-9249-a228559feb5c"
+   repos="http://www.kju-app.org/svn/q"
+   revision="89"/>
+<entry
+   committed-rev="63"
+   name="InfoPlist.strings"
+   text-time="2007-06-19T14:10:34.000000Z"
+   committed-date="2007-02-06T02:40:11.717584Z"
+   checksum="261239b86a0425fdeb1832e9f2e00560"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:31.000000Z"/>
+<entry
+   name="cocoaControlNewPCAssistant.nib"
+   kind="dir"/>
+<entry
+   name="cocoaDownload.nib"
+   kind="dir"/>
+<entry
+   name="cocoaControlEditPC.nib"
+   kind="dir"/>
+<entry
+   name="Q Help"
+   kind="dir"/>
+<entry
+   committed-rev="83"
+   name="Localizable.strings"
+   text-time="2007-06-19T14:10:34.000000Z"
+   committed-date="2007-04-25T19:05:11.065787Z"
+   checksum="19c6dac6653a97b85fafcfd39c49f79b"
+   last-author="cordney"
+   kind="file"
+   prop-time="2007-06-19T14:10:32.000000Z"/>
+<entry
+   name="cocoaControlDiskImage.nib"
+   kind="dir"/>
+<entry
+   name="cocoaControl.nib"
+   kind="dir"/>
+<entry
+   name="cocoaControlPreferences.nib"
+   kind="dir"/>
+</wc-entries>

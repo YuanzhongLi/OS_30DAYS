@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="77"
+   name=""
+   committed-date="2007-04-07T19:56:37.010205Z"
+   url="http://www.kju-app.org/svn/q/trunk/qcontrol/Resources/English.lproj/cocoaControlNewPCAssistant.nib"
+   last-author="mike"
+   kind="dir"
+   uuid="8a1c316d-cb12-0410-9249-a228559feb5c"
+   repos="http://www.kju-app.org/svn/q"
+   revision="89"/>
+<entry
+   committed-rev="74"
+   name="info.nib"
+   text-time="2007-06-19T14:10:31.000000Z"
+   committed-date="2007-03-26T20:12:44.970537Z"
+   checksum="0fde827a4ec5eb136e30c8f4c3f2f715"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:31.000000Z"/>
+<entry
+   committed-rev="77"
+   name="keyedobjects.nib"
+   text-time="2007-06-19T14:10:31.000000Z"
+   committed-date="2007-04-07T19:56:37.010205Z"
+   checksum="dcddce549a0d237940a98452a8009f65"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:31.000000Z"/>
+<entry
+   committed-rev="74"
+   name="classes.nib"
+   text-time="2007-06-19T14:10:31.000000Z"
+   committed-date="2007-03-26T20:12:44.970537Z"
+   checksum="bedf9d16ffbabe857861e51bf6795881"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:31.000000Z"/>
+</wc-entries>

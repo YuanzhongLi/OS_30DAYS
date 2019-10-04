@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="60"
+   name=""
+   committed-date="2007-02-05T22:36:01.556019Z"
+   url="http://www.kju-app.org/svn/q/trunk/qcontrol/Resources/pl.lproj/Q%20Help/images"
+   last-author="mike"
+   kind="dir"
+   uuid="8a1c316d-cb12-0410-9249-a228559feb5c"
+   repos="http://www.kju-app.org/svn/q"
+   revision="89"/>
+<entry
+   committed-rev="60"
+   name="s_interface_palette.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="0320caa576e78051708ae3353c10625d"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_pref.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="c47c09744277ace1b0453a8144c77af8"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_harddisk.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="7491596a6f126d014260b3d84079f8f8"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_usb.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="3e10ab53ca8da53c17813970e39e137b"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_pcboot.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="a8ad1caab39dbc8e6a435aafa31592d1"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_cdrom.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="1abe132503139032fec333c28f685e68"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_fqmx.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="7bfae2db894321bca69f0d8b629d0b9c"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_pause.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="b54d0f1c826cd313077e606e17080f2a"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_interface_control.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="5bc47170309cdf9aecd0f0c6112e91f7"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_floppy.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="03e5135c59c8f97a0ff4d85974b815a9"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_contro.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="f9c1a6cc9ba947e36b2a2c4be01c2703"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_reset.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="a10f7f2399da2b7c28afb0f1f587884e"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_elo.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="0ceb071a5f8efe0ded7f95af158ae864"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="dbff961ac817961ebec12fb224d1047c"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_name.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="d514175e7ec77b82fc61f0b6de9b4129"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_cd.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="82927260b67eba08278cb2674207978d"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_shutd.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="e4709bfa1e5b48c6b99b33816b8fb51e"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_architecture.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="94f1622dd81e887084167d28764b330a"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_icon.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="5a163104b3f5d2ace97c2f910ec9aed8"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:29.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_usernet.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="597185aeb0125c3a9adb8461422b4e0b"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_ctrkl.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="5304802fd4b702f5838831d91f1f0bcc"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q-paus32.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="288bf0ac4525524a6a298ac22ca4d536"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_remove.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="9f1a7a8cd5a0b52000e807cd511d5ebc"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_start.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="332a988cb6f51dcb4a7e625831a2910d"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_fvpc.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="c619b3013bbf5db90e4aed840bbd29d4"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_screens.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="acdc2ba5730a09d65a9ffb4c6e7ce7dd"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_create.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="a0d4c4f88d077eae047de5ffc8af36eb"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_cpuuse.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="05ca1633bdd76b74d5c4f88840eab441"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_diskImage_size.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="8473533651e522b53d4e75f6dda56e27"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_tlbapc.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="84453b92ca1a2f656e82a09c18b1b4d5"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_audio.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="669079ef5d75296b086f65cd6e71e107"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC2.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="e9ff4650b9614ca817091dafa531705b"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_boot.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="2e1be7e619fd2b86509be15d607bc5f1"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_ctrlad.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="21900d1a4c499b7769397df692b795b7"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_floppy.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="f194c854954c78eebd2f670943116df0"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_arguments.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="e12e1e08edeb1902c6e0cbad815bf592"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_diskImage_filename.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="ceda8a2d9bd2e1afdb3ae744e54c4a9b"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_diskImage.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="333ee21e5dcb660cbd41b4fd395f4b95"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_localtime.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="6e8206ad8cc561eeca4e3a1018b84114"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_diskImage_format.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="a9656c23c9df409be1dd0ec572d12aab"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_ram.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="8a384c1a7a405861ee89a418adaec61a"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_interface_guest.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="ea64ed4e8dd20fdffc7d94a4934a8dec"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="q_tlbcnt.gif"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="4884ad5429e0295bb3d044a283bba32c"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="s_editPC_openGL.jpg"
+   text-time="2007-06-19T14:10:30.000000Z"
+   committed-date="2007-02-05T22:36:01.556019Z"
+   checksum="bfedf560325c451d26c4ecdb2ac05689"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:30.000000Z"/>
+</wc-entries>

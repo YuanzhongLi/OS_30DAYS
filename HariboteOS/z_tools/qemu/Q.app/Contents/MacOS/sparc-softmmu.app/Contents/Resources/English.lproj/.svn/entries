@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="85"
+   name=""
+   committed-date="2007-05-07T15:12:57.328261Z"
+   url="http://www.kju-app.org/svn/q/trunk/host-cocoa/Resources/English.lproj"
+   last-author="mike"
+   kind="dir"
+   uuid="8a1c316d-cb12-0410-9249-a228559feb5c"
+   repos="http://www.kju-app.org/svn/q"
+   revision="89"/>
+<entry
+   committed-rev="85"
+   name="Localizable.strings"
+   text-time="2007-06-19T14:10:22.000000Z"
+   committed-date="2007-05-07T15:12:57.328261Z"
+   checksum="c5cd0a77975e8dd502530f7805b21dc5"
+   last-author="mike"
+   kind="file"
+   prop-time="2007-06-19T14:10:22.000000Z"/>
+</wc-entries>
