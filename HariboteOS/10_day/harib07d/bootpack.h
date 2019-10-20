@@ -1,10 +1,10 @@
 /* asmhead.nas */
 struct BOOTINFO { /* 0x0ff0-0x0fff */
-	char cyls; /* ƒu[ƒgƒZƒNƒ^‚Í‚Ç‚±‚Ü‚ÅƒfƒBƒXƒN‚ğ“Ç‚ñ‚¾‚Ì‚© */
-	char leds; /* ƒu[ƒg‚ÌƒL[ƒ{[ƒh‚ÌLED‚Ìó‘Ô */
-	char vmode; /* ƒrƒfƒIƒ‚[ƒh  ‰½ƒrƒbƒgƒJƒ‰[‚© */
+	char cyls; /* ãƒ–ãƒ¼ãƒˆã‚»ã‚¯ã‚¿ã¯ã©ã“ã¾ã§ãƒ‡ã‚£ã‚¹ã‚¯ã‚’èª­ã‚“ã ã®ã‹ */
+	char leds; /* ãƒ–ãƒ¼ãƒˆæ™‚ã®ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®LEDã®çŠ¶æ…‹ */
+	char vmode; /* ãƒ“ãƒ‡ã‚ªãƒ¢ãƒ¼ãƒ‰  ä½•ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã‹ */
 	char reserve;
-	short scrnx, scrny; /* ‰æ–Ê‰ğ‘œ“x */
+	short scrnx, scrny; /* ç”»é¢è§£åƒåº¦ */
 	char *vram;
 };
 #define ADR_BOOTINFO	0x00000ff0
@@ -123,12 +123,12 @@ int mouse_decode(struct MOUSE_DEC *mdec, unsigned char dat);
 extern struct FIFO8 mousefifo;
 
 /* memory.c */
-#define MEMMAN_FREES		4090	/* ‚±‚ê‚Å–ñ32KB */
+#define MEMMAN_FREES		4090	/* ã“ã‚Œã§ç´„32KB */
 #define MEMMAN_ADDR			0x003c0000
-struct FREEINFO {	/* ‚ ‚«î•ñ */
+struct FREEINFO {	/* ã‚ãæƒ…å ± */
 	unsigned int addr, size;
 };
-struct MEMMAN {		/* ƒƒ‚ƒŠŠÇ— */
+struct MEMMAN {		/* ãƒ¡ãƒ¢ãƒªç®¡ç† */
 	int frees, maxfrees, lostsize, losts;
 	struct FREEINFO free[MEMMAN_FREES];
 };
@@ -157,5 +157,6 @@ struct SHEET *sheet_alloc(struct SHTCTL *ctl);
 void sheet_setbuf(struct SHEET *sht, unsigned char *buf, int xsize, int ysize, int col_inv);
 void sheet_updown(struct SHTCTL *ctl, struct SHEET *sht, int height);
 void sheet_refresh(struct SHTCTL *ctl, struct SHEET *sht, int bx0, int by0, int bx1, int by1);
+void sheet_refreshsub(struct SHTCTL *ctl, int vx0, int vy0, int vx1, int vy1);
 void sheet_slide(struct SHTCTL *ctl, struct SHEET *sht, int vx0, int vy0);
 void sheet_free(struct SHTCTL *ctl, struct SHEET *sht);
