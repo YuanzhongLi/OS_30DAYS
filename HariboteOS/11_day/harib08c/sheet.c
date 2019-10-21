@@ -18,7 +18,7 @@ struct SHTCTL *shtctl_init(struct MEMMAN *memman, unsigned char *vram, int xsize
 	ctl->top = -1; /* シートは一枚もない */
 	for (i = 0; i < MAX_SHEETS; i++) {
 		ctl->sheets0[i].flags = 0; /* 未使用マーク */
-		ctl->sheets0[i].ctl = ctl; /* 所属を記録 */
+    ctl->sheets0[i].ctl = ctl;
 	}
 err:
 	return ctl;
@@ -86,7 +86,7 @@ void sheet_refreshsub(struct SHTCTL *ctl, int vx0, int vy0, int vx1, int vy1)
 
 void sheet_updown(struct SHEET *sht, int height)
 {
-	struct SHTCTL *ctl = sht->ctl;
+  struct SHTCTL *ctl = sht->ctl;
 	int h, old = sht->height; /* 設定前の高さを記憶する */
 
 	/* 指定が低すぎや高すぎだったら、修正する */

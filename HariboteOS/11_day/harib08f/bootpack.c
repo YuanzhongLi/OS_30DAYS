@@ -51,8 +51,8 @@ void HariMain(void)
 	sheet_slide(sht_mouse, mx, my);
 	sheet_slide(sht_win, 80, 72);
 	sheet_updown(sht_back,  0);
-	sheet_updown(sht_win,   1);
-	sheet_updown(sht_mouse, 2);
+	sheet_updown(sht_mouse, 1);
+	sheet_updown(sht_win,   2);
 	sprintf(s, "(%3d, %3d)", mx, my);
 	putfonts8_asc(buf_back, binfo->scrnx, 0, 0, COL8_FFFFFF, s);
 	sprintf(s, "memory %dMB   free : %dKB",
@@ -61,13 +61,14 @@ void HariMain(void)
 	sheet_refresh(sht_back, 0, 0, binfo->scrnx, 48);
 
 	for (;;) {
-		count++;
-		sprintf(s, "%010d", count);
-		boxfill8(buf_win, 160, COL8_C6C6C6, 40, 28, 119, 43);
-		putfonts8_asc(buf_win, 160, 40, 28, COL8_000000, s);
-		sheet_refresh(sht_win, 40, 28, 120, 44);
+    count++;
+    sprintf(s, "%010d", count);
+    boxfill8(buf_win, 160, COL8_C6C6C6, 40, 28, 119, 43);
+    putfonts8_asc(buf_win, 160, 40, 28, COL8_000000, s);
+    sheet_refresh(sht_win, 40, 28, 120, 44);
 
 		io_cli();
+
 		if (fifo8_status(&keyfifo) + fifo8_status(&mousefifo) == 0) {
 			io_sti();
 		} else {
