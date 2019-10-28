@@ -10,7 +10,7 @@ void HariMain(void)
 {
 	struct BOOTINFO *binfo = (struct BOOTINFO *) ADR_BOOTINFO;
 	struct FIFO8 timerfifo;
-	char s[40], keybuf[32], mousebuf[128], timerbuf[8];
+	char s[40], keybuf[32], mousebuf[128], timerbuf[8], timerbuf2[8], timerbuf3[8];
 	struct TIMER *timer, *timer2, *timer3;
 	int mx, my, i;
 	unsigned int memtotal;
@@ -33,9 +33,11 @@ void HariMain(void)
 	timer = timer_alloc();
 	timer_init(timer, &timerfifo, 10);
 	timer_settime(timer, 1000);
+	fifo8_init(&timerfifo, 8, timerbuf2);
 	timer2 = timer_alloc();
 	timer_init(timer2, &timerfifo, 3);
 	timer_settime(timer2, 300);
+	fifo8_init(&timerfifo, 8, timerbuf3);
 	timer3 = timer_alloc();
 	timer_init(timer3, &timerfifo, 1);
 	timer_settime(timer3, 50);
@@ -123,24 +125,24 @@ void HariMain(void)
 					sheet_slide(sht_mouse, mx, my);
 				}
 			} else if (fifo8_status(&timerfifo) != 0) {
-				i = fifo8_get(&timerfifo); /* タイムアウトしたのはどれかな？ */
+				i = fifo8_get(&timerfifo);
 				io_sti();
-				if (i == 10) {
-					putfonts8_asc_sht(sht_back, 0, 64, COL8_FFFFFF, COL8_008484, "10[sec]", 7);
-				} else if (i == 3) {
-					putfonts8_asc_sht(sht_back, 0, 80, COL8_FFFFFF, COL8_008484, "3[sec]", 6);
+
+        if (i == 10) {
+          putfonts8_asc_sht(sht_back, 0, 64, COL8_FFFFFF, COL8_008484, "10[sec]", 7);
+        } else if (i == 3) {
+          putfonts8_asc_sht(sht_back, 0, 80, COL8_FFFFFF, COL8_008484, "3[sec]", 6);
+        } else {
+          if (i != 0) {
+					timer_init(timer3, &timerfifo, 0); /* 次は0を */
+					boxfill8(buf_back, binfo->scrnx, COL8_FFFFFF, 8, 96, 15, 111);
 				} else {
-					/* 0か1 */
-					if (i != 0) {
-						timer_init(timer3, &timerfifo, 0); /* 次は0を */
-						boxfill8(buf_back, binfo->scrnx, COL8_FFFFFF, 8, 96, 15, 111);
-					} else {
-						timer_init(timer3, &timerfifo, 1); /* 次は1を */
-						boxfill8(buf_back, binfo->scrnx, COL8_008484, 8, 96, 15, 111);
-					}
-					timer_settime(timer3, 50);
-					sheet_refresh(sht_back, 8, 96, 16, 112);
+					timer_init(timer3, &timerfifo, 1); /* 次は1を */
+					boxfill8(buf_back, binfo->scrnx, COL8_008484, 8, 96, 15, 111);
 				}
+				timer_settime(timer3, 50);
+				sheet_refresh(sht_back, 8, 96, 16, 112);
+        }
 			}
 		}
 	}

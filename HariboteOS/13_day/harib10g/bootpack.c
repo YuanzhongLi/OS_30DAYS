@@ -11,7 +11,7 @@ void HariMain(void)
 	struct BOOTINFO *binfo = (struct BOOTINFO *) ADR_BOOTINFO;
 	struct FIFO32 fifo;
 	char s[40];
-	int fifobuf[128];
+  int fifobuf[128];
 	struct TIMER *timer, *timer2, *timer3;
 	int mx, my, i, count = 0;
 	unsigned int memtotal;
@@ -80,13 +80,13 @@ void HariMain(void)
 		if (fifo32_status(&fifo) == 0) {
 			io_sti();
 		} else {
-			i = fifo32_get(&fifo);
-			io_sti();
-			if (256 <= i && i <= 511) { /* キーボードデータ */
-				sprintf(s, "%02X", i - 256);
+      i = fifo32_get(&fifo);
+      io_sti();
+			if (256 <= i && i <= 511) {
+				sprintf(s, "%02X", i);
 				putfonts8_asc_sht(sht_back, 0, 16, COL8_FFFFFF, COL8_008484, s, 2);
-			} else if (512 <= i && i <= 767) { /* マウスデータ */
-				if (mouse_decode(&mdec, i - 512) != 0) {
+			} else if (512 <= i && i <= 767) {
+				if (mouse_decode(&mdec, i) != 0) {
 					/* データが3バイト揃ったので表示 */
 					sprintf(s, "[lcr %4d %4d]", mdec.x, mdec.y);
 					if ((mdec.btn & 0x01) != 0) {
@@ -118,24 +118,24 @@ void HariMain(void)
 					putfonts8_asc_sht(sht_back, 0, 0, COL8_FFFFFF, COL8_008484, s, 10);
 					sheet_slide(sht_mouse, mx, my);
 				}
-			} else if (i == 10) { /* 10秒タイマ */
-				putfonts8_asc_sht(sht_back, 0, 64, COL8_FFFFFF, COL8_008484, "10[sec]", 7);
-				sprintf(s, "%010d", count);
-				putfonts8_asc_sht(sht_win, 40, 28, COL8_000000, COL8_C6C6C6, s, 10);
-			} else if (i == 3) { /* 3秒タイマ */
-				putfonts8_asc_sht(sht_back, 0, 80, COL8_FFFFFF, COL8_008484, "3[sec]", 6);
-				count = 0; /* 測定開始 */
-			} else if (i == 1) { /* カーソル用タイマ */
-				timer_init(timer3, &fifo, 0); /* 次は0を */
-				boxfill8(buf_back, binfo->scrnx, COL8_FFFFFF, 8, 96, 15, 111);
-				timer_settime(timer3, 50);
-				sheet_refresh(sht_back, 8, 96, 16, 112);
-			} else if (i == 0) { /* カーソル用タイマ */
-				timer_init(timer3, &fifo, 1); /* 次は1を */
-				boxfill8(buf_back, binfo->scrnx, COL8_008484, 8, 96, 15, 111);
-				timer_settime(timer3, 50);
-				sheet_refresh(sht_back, 8, 96, 16, 112);
-			}
+			} else if (i == 10) {
+        putfonts8_asc_sht(sht_back, 0, 64, COL8_FFFFFF, COL8_008484, "10[sec]", 7);
+        sprintf(s, "%010d", count);
+        putfonts8_asc_sht(sht_win, 40, 28, COL8_000000, COL8_C6C6C6, s, 10);
+			} else if (i == 3) {
+        putfonts8_asc_sht(sht_back, 0, 80, COL8_FFFFFF, COL8_008484, "3[sec]", 6);
+        count = 0; /* 測定開始 */
+      } else if (i == 1) {
+        timer_init(timer3, &fifo, 0);
+        boxfill8(buf_back, binfo->scrnx, COL8_FFFFFF, 8, 96, 15, 111);
+        timer_settime(timer3, 50);
+        sheet_refresh(sht_back, 8, 96, 16, 112);
+      } else if (i == 0) {
+        timer_init(timer3, &fifo, 1);
+        boxfill8(buf_back, binfo->scrnx, COL8_008484, 8, 96, 15, 111);
+        timer_settime(timer3, 50);
+        sheet_refresh(sht_back, 8, 96, 16, 112);
+      }
 		}
 	}
 }
