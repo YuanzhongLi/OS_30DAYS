@@ -39,6 +39,7 @@ VRAM	EQU		0x0ff8			; グラフィックバッファの開始番地
 
 		MOV		AX,[ES:DI+4]
 		CMP		AX,0x0200
+    ;JMP   scrn320     ; どうしてもカクカクするため320に強制変更
 		JB		scrn320			; if (AX < 0x0200) goto scrn320
 
 ; 画面モード情報を得る

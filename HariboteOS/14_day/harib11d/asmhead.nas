@@ -23,7 +23,7 @@ VRAM	EQU		0x0ff8			; グラフィックバッファの開始番地
 		MOV		BYTE [VMODE],8	; 画面モードをメモする（C言語が参照する）
 		MOV		WORD [SCRNX],640
 		MOV		WORD [SCRNY],480
-		MOV		DWORD [VRAM],0xe0000000
+		MOV		DWORD [VRAM],0xfd000000
 
 ; キーボードのLED状態をBIOSに教えてもらう
 
