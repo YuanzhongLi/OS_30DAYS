@@ -16,7 +16,7 @@
 14_day/README.mdを参考にqemuのinstallとz_toolsの設定をしてください
 
 ## 備考
-- ファイルがbootpack_ans.c や bootpack.cのようにあると思うがこれはbootpack_ans.cは正しいコードで, bootpack.cは私が演習する際に1個前のバージョンをコピーしてそこから書き足して完成させたものである
+- ファイルがbootpack_ans.c や bootpack.cのようにあるがこれはbootpack_ans.cは正しいコードで, bootpack.cは私が演習する際に1個前のバージョンをコピーしてそこから書き足して完成させたものである
 同様に演習して行くのがやりやすいと思う
-- 日ごとにREADME.mdがあり、その単元の内容を軽くメモしてあるので参考までに
+- 日ごとにREADME.mdがあり,その単元の内容を軽くメモしてあるので参考までに
 
