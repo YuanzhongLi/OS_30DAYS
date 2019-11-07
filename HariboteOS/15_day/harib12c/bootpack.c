@@ -60,9 +60,9 @@ void HariMain(void)
 	timer3 = timer_alloc();
 	timer_init(timer3, &fifo, 1);
 	timer_settime(timer3, 50);
-	timer_ts = timer_alloc();
-	timer_init(timer_ts, &fifo, 2);
-	timer_settime(timer_ts, 2);
+  timer_ts = timer_alloc();
+  timer_init(timer_ts, &fifo, 2);
+  timer_settime(timer_ts, 2);
 
 	memtotal = memtest(0x00400000, 0xbfffffff);
 	memman_init(memman);
@@ -125,16 +125,17 @@ void HariMain(void)
 	tss_b.gs = 1 * 8;
 
 	for (;;) {
-		io_cli();
+		// io_cli();
 		if (fifo32_status(&fifo) == 0) {
 			io_stihlt();
 		} else {
+			io_cli();
 			i = fifo32_get(&fifo);
 			io_sti();
-			if (i == 2) {
-				farjmp(0, 4 * 8);
-				timer_settime(timer_ts, 2);
-			} else if (256 <= i && i <= 511) { /* キーボードデータ */
+      if (i == 2) {
+        farjmp(0, 4 * 8);
+        timer_settime(timer_ts, 2);
+      } else if (256 <= i && i <= 511) { /* キーボードデータ */
 				sprintf(s, "%02X", i - 256);
 				putfonts8_asc_sht(sht_back, 0, 16, COL8_FFFFFF, COL8_008484, s, 2);
 				if (i < 0x54 + 256) {
@@ -295,16 +296,16 @@ void task_b_main(void)
 	timer_settime(timer_ts, 2);
 
 	for (;;) {
-		io_cli();
+		// io_cli();
 		if (fifo32_status(&fifo) == 0) {
-			io_sti();
-			io_hlt();
+			io_stihlt();
 		} else {
+			io_cli();
 			i = fifo32_get(&fifo);
 			io_sti();
-			if (i == 1) { /* タスクスイッチ */
-				farjmp(0, 3 * 8);
-				timer_settime(timer_ts, 2);
+			if (i == 1) {
+				farjmp(0, 3 * 8); /* タスクスイッチ */
+        timer_settime(timer_ts, 2);
 			}
 		}
 	}

@@ -126,10 +126,11 @@ void HariMain(void)
 	*((int *) (task_b_esp + 4)) = (int) sht_back;
 
 	for (;;) {
-		io_cli();
+		// io_cli();
 		if (fifo32_status(&fifo) == 0) {
 			io_stihlt();
 		} else {
+			io_cli();
 			i = fifo32_get(&fifo);
 			io_sti();
 			if (i == 2) {
@@ -295,26 +296,29 @@ void task_b_main(struct SHEET *sht_back)
 	timer_ts = timer_alloc();
 	timer_init(timer_ts, &fifo, 2);
 	timer_settime(timer_ts, 2);
-	timer_put = timer_alloc();
-	timer_init(timer_put, &fifo, 1);
-	timer_settime(timer_put, 1);
+  timer_put = timer_alloc();
+  timer_init(timer_put, &fifo, 1);
+  timer_settime(timer_put, 1);
 
 	for (;;) {
 		count++;
-		io_cli();
+		sprintf(s, "%10d", count);
+		putfonts8_asc_sht(sht_back, 0, 144, COL8_FFFFFF, COL8_008484, s, 10);
+		// io_cli();
 		if (fifo32_status(&fifo) == 0) {
 			io_sti();
 		} else {
+      io_cli();
 			i = fifo32_get(&fifo);
 			io_sti();
 			if (i == 1) {
-				sprintf(s, "%11d", count);
-				putfonts8_asc_sht(sht_back, 0, 144, COL8_FFFFFF, COL8_008484, s, 11);
-				timer_settime(timer_put, 1);
+        sprintf(s, "11d", count);
+        putfonts8_asc_sht(sht_back, 0, 144, COL8_FFFFFF, COL8_008484, s, 11);
+        timer_settime(timer_put, 1);
 			} else if (i == 2) {
-				farjmp(0, 3 * 8);
-				timer_settime(timer_ts, 2);
-			}
+        farjmp(0, 3 * 8);
+        timer_settime(timer_ts, 2);
+      }
 		}
 	}
 }
