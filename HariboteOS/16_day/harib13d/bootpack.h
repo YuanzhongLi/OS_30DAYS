@@ -196,7 +196,7 @@ struct TSS32 {
 };
 struct TASK {
 	int sel, flags; /* selはGDTの番号のこと */
-	int priority;
+  int priority;
 	struct TSS32 tss;
 };
 struct TASKCTL {

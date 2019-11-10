@@ -289,10 +289,11 @@ void task_b_main(struct SHEET *sht_win_b)
 
 	for (;;) {
 		count++;
-		io_cli();
+		// io_cli();
 		if (fifo32_status(&fifo) == 0) {
-			io_sti();
+			// io_sti();
 		} else {
+			io_cli();
 			i = fifo32_get(&fifo);
 			io_sti();
 			if (i == 100) {

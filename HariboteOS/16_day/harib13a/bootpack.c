@@ -87,7 +87,7 @@ void HariMain(void)
 			memtotal / (1024 * 1024), memman_total(memman) / 1024);
 	putfonts8_asc_sht(sht_back, 0, 32, COL8_FFFFFF, COL8_008484, s, 40);
 
-	task_init(memman);
+  task_init(memman);
 	task_b = task_alloc();
 	task_b->tss.esp = memman_alloc_4k(memman, 64 * 1024) + 64 * 1024 - 8;
 	task_b->tss.eip = (int) &task_b_main;
@@ -98,13 +98,14 @@ void HariMain(void)
 	task_b->tss.fs = 1 * 8;
 	task_b->tss.gs = 1 * 8;
 	*((int *) (task_b->tss.esp + 4)) = (int) sht_back;
-	task_run(task_b);
+  task_run(task_b);
 
 	for (;;) {
-		io_cli();
+		// io_cli();
 		if (fifo32_status(&fifo) == 0) {
-			io_stihlt();
+			io_sti();
 		} else {
+			io_cli();
 			i = fifo32_get(&fifo);
 			io_sti();
 			if (256 <= i && i <= 511) { /* キーボードデータ */
@@ -273,10 +274,11 @@ void task_b_main(struct SHEET *sht_back)
 
 	for (;;) {
 		count++;
-		io_cli();
+		// io_cli();
 		if (fifo32_status(&fifo) == 0) {
-			io_sti();
+			// io_sti();
 		} else {
+			// io_cli();
 			i = fifo32_get(&fifo);
 			io_sti();
 			if (i == 1) {
