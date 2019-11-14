@@ -125,11 +125,12 @@ void HariMain(void)
 	putfonts8_asc_sht(sht_back, 0, 32, COL8_FFFFFF, COL8_008484, s, 40);
 
 	for (;;) {
-		io_cli();
+		// io_cli();
 		if (fifo32_status(&fifo) == 0) {
 			task_sleep(task_a);
 			io_sti();
 		} else {
+			io_cli();
 			i = fifo32_get(&fifo);
 			io_sti();
 			if (256 <= i && i <= 511) { /* キーボードデータ */
@@ -144,12 +145,12 @@ void HariMain(void)
 				} else {
 					s[0] = 0;
 				}
-				if ('A' <= s[0] && s[0] <= 'Z') {	/* 入力文字がアルファベット */
-					if (((key_leds & 4) == 0 && key_shift == 0) ||
+        if ('A' <= s[0] && s[0] <= 'Z') {
+          if (((key_leds & 4) == 0 && key_shift == 0) ||
 							((key_leds & 4) != 0 && key_shift != 0)) {
 						s[0] += 0x20;	/* 大文字を小文字に変換 */
 					}
-				}
+        }
 				if (s[0] != 0) { /* 通常文字 */
 					if (key_to == 0) {	/* タスクAへ */
 						if (cursor_x < 128) {
@@ -355,11 +356,12 @@ void console_task(struct SHEET *sheet)
 	putfonts8_asc_sht(sheet, 8, 28, COL8_FFFFFF, COL8_000000, ">", 1);
 
 	for (;;) {
-		io_cli();
+		// io_cli();
 		if (fifo32_status(&task->fifo) == 0) {
 			task_sleep(task);
 			io_sti();
 		} else {
+			io_cli();
 			i = fifo32_get(&task->fifo);
 			io_sti();
 			if (i <= 1) { /* カーソル用タイマ */

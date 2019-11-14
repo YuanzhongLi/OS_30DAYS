@@ -12,13 +12,13 @@ void HariMain(void)
 {
 	struct BOOTINFO *binfo = (struct BOOTINFO *) ADR_BOOTINFO;
 	struct FIFO32 fifo;
-	struct SHTCTL *shtctl;
 	char s[40];
 	int fifobuf[128];
 	int mx, my, i, cursor_x, cursor_c;
 	unsigned int memtotal;
 	struct MOUSE_DEC mdec;
 	struct MEMMAN *memman = (struct MEMMAN *) MEMMAN_ADDR;
+	struct SHTCTL *shtctl;
 	static char keytable[0x54] = {
 		0,   0,   '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '^', 0,   0,
 		'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '@', '[', 0,   0,   'A', 'S',
@@ -61,21 +61,21 @@ void HariMain(void)
 
 	/* sht_cons */
 	sht_cons = sheet_alloc(shtctl);
-	buf_cons = (unsigned char *) memman_alloc_4k(memman, 256 * 165);
-	sheet_setbuf(sht_cons, buf_cons, 256, 165, -1); /* 透明色なし */
-	make_window8(buf_cons, 256, 165, "console", 0);
-	make_textbox8(sht_cons, 8, 28, 240, 128, COL8_000000);
-	task_cons = task_alloc();
-	task_cons->tss.esp = memman_alloc_4k(memman, 64 * 1024) + 64 * 1024 - 8;
-	task_cons->tss.eip = (int) &console_task;
-	task_cons->tss.es = 1 * 8;
-	task_cons->tss.cs = 2 * 8;
-	task_cons->tss.ss = 1 * 8;
-	task_cons->tss.ds = 1 * 8;
-	task_cons->tss.fs = 1 * 8;
-	task_cons->tss.gs = 1 * 8;
-	*((int *) (task_cons->tss.esp + 4)) = (int) sht_cons;
-	task_run(task_cons, 2, 2); /* level=2, priority=2 */
+  buf_cons = (unsigned char *) memman_alloc_4k(memman, 256 * 165);
+  sheet_setbuf(sht_cons, buf_cons, 256, 165, -1); // 透明色なし
+  make_window8(buf_cons, 256, 165, "console", 0);
+  make_textbox8(sht_cons, 8, 28, 240, 128, COL8_000000);
+  task_cons = task_alloc();
+  task_cons->tss.esp = memman_alloc_4k(memman, 64 * 1024) + 64 * 1024 - 8;
+  task_cons->tss.eip = (int) &console_task;
+  task_cons->tss.es = 1 * 8;
+  task_cons->tss.cs = 2 * 8;
+  task_cons->tss.ss = 1 * 8;
+  task_cons->tss.ds = 1 * 8;
+  task_cons->tss.fs = 1 * 8;
+  task_cons->tss.gs = 1 * 8;
+  *((int *) (task_cons->tss.esp + 4)) = (int) sht_cons;
+  task_run(task_cons, 2, 2); // levle = 2, priority = 2
 
 	/* sht_win */
 	sht_win   = sheet_alloc(shtctl);
@@ -96,13 +96,13 @@ void HariMain(void)
 	mx = (binfo->scrnx - 16) / 2; /* 画面中央になるように座標計算 */
 	my = (binfo->scrny - 28 - 16) / 2;
 
-	sheet_slide(sht_back,  0,  0);
+	sheet_slide(sht_back, 0, 0);
 	sheet_slide(sht_cons, 32,  4);
-	sheet_slide(sht_win,  64, 56);
+	sheet_slide(sht_win, 64, 56);
 	sheet_slide(sht_mouse, mx, my);
-	sheet_updown(sht_back,  0);
-	sheet_updown(sht_cons,  1);
-	sheet_updown(sht_win,   2);
+	sheet_updown(sht_back,     0);
+	sheet_updown(sht_cons, 1);
+	sheet_updown(sht_win, 2);
 	sheet_updown(sht_mouse, 3);
 	sprintf(s, "(%3d, %3d)", mx, my);
 	putfonts8_asc_sht(sht_back, 0, 0, COL8_FFFFFF, COL8_008484, s, 10);
@@ -111,11 +111,12 @@ void HariMain(void)
 	putfonts8_asc_sht(sht_back, 0, 32, COL8_FFFFFF, COL8_008484, s, 40);
 
 	for (;;) {
-		io_cli();
+		// io_cli();
 		if (fifo32_status(&fifo) == 0) {
 			task_sleep(task_a);
 			io_sti();
 		} else {
+      io_cli();
 			i = fifo32_get(&fifo);
 			io_sti();
 			if (256 <= i && i <= 511) { /* キーボードデータ */
@@ -270,39 +271,38 @@ void make_textbox8(struct SHEET *sht, int x0, int y0, int sx, int sy, int c)
 	return;
 }
 
-void console_task(struct SHEET *sheet)
-{
-	struct FIFO32 fifo;
-	struct TIMER *timer;
-	struct TASK *task = task_now();
+void console_task(struct SHEET *sheet) {
+  struct FIFO32 fifo;
+  struct TIMER *timer;
+  struct TASK *task = task_now();
+  int i, fifobuf[128], cursor_x = 8, cursor_c = COL8_000000;
+  fifo32_init(&fifo, 128, fifobuf, task);
 
-	int i, fifobuf[128], cursor_x = 8, cursor_c = COL8_000000;
-	fifo32_init(&fifo, 128, fifobuf, task);
+  timer = timer_alloc();
+  timer_init(timer, &fifo, 1);
+  timer_settime(timer, 50);
 
-	timer = timer_alloc();
-	timer_init(timer, &fifo, 1);
-	timer_settime(timer, 50);
+  for (;;) {
+    // io_cli();
+    if (fifo32_status(&fifo) == 0) {
+      io_cli();
+      task_sleep(task);
+      io_sti();
+    } else {
+      i = fifo32_get(&fifo);
+      if (i <= 1) {
+        if (i != 0) {
+          timer_init(timer, &fifo, 0);
+          cursor_c = COL8_FFFFFF;
+        } else {
+          timer_init(timer, &fifo, 1);
+          cursor_c = COL8_000000;
+        }
+        timer_settime(timer, 50);
+        boxfill8(sheet->buf, sheet->bxsize, cursor_c, cursor_x, 28, cursor_x + 7, 43);
+        sheet_refresh(sheet, cursor_x, 28, cursor_x + 8, 44);
+      }
+    }
 
-	for (;;) {
-		io_cli();
-		if (fifo32_status(&fifo) == 0) {
-			task_sleep(task);
-			io_sti();
-		} else {
-			i = fifo32_get(&fifo);
-			io_sti();
-			if (i <= 1) { /* カーソル用タイマ */
-				if (i != 0) {
-					timer_init(timer, &fifo, 0); /* 次は0を */
-					cursor_c = COL8_FFFFFF;
-				} else {
-					timer_init(timer, &fifo, 1); /* 次は1を */
-					cursor_c = COL8_000000;
-				}
-				timer_settime(timer, 50);
-				boxfill8(sheet->buf, sheet->bxsize, cursor_c, cursor_x, 28, cursor_x + 7, 43);
-				sheet_refresh(sheet, cursor_x, 28, cursor_x + 8, 44);
-			}
-		}
-	}
-}
+  }
+};
