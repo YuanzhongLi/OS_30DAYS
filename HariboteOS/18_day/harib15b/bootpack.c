@@ -193,13 +193,13 @@ void HariMain(void)
 						make_wtitle8(buf_cons, sht_cons->bxsize, "console", 1);
 						cursor_c = -1; /* カーソルを消す */
 						boxfill8(sht_win->buf, sht_win->bxsize, COL8_FFFFFF, cursor_x, 28, cursor_x + 7, 43);
-						fifo32_put(&task_cons->fifo, 2); /* コンソールのカーソルON */
+            fifo32_put(&task_cons->fifo, 2);
 					} else {
 						key_to = 0;
 						make_wtitle8(buf_win,  sht_win->bxsize,  "task_a",  1);
 						make_wtitle8(buf_cons, sht_cons->bxsize, "console", 0);
 						cursor_c = COL8_000000; /* カーソルを出す */
-						fifo32_put(&task_cons->fifo, 3); /* コンソールのカーソルOFF */
+            fifo32_put(&task_cons->fifo, 3);
 					}
 					sheet_refresh(sht_win,  0, 0, sht_win->bxsize,  21);
 					sheet_refresh(sht_cons, 0, 0, sht_cons->bxsize, 21);
@@ -403,34 +403,35 @@ void console_task(struct SHEET *sheet)
 	putfonts8_asc_sht(sheet, 8, 28, COL8_FFFFFF, COL8_000000, ">", 1);
 
 	for (;;) {
-		io_cli();
+		// io_cli();
 		if (fifo32_status(&task->fifo) == 0) {
 			task_sleep(task);
 			io_sti();
 		} else {
+			io_cli();
 			i = fifo32_get(&task->fifo);
 			io_sti();
 			if (i <= 1) { /* カーソル用タイマ */
 				if (i != 0) {
 					timer_init(timer, &task->fifo, 0); /* 次は0を */
-					if (cursor_c >= 0) {
-						cursor_c = COL8_FFFFFF;
-					}
+          if (cursor_c >= 0) {
+  					cursor_c = COL8_FFFFFF;
+          }
 				} else {
 					timer_init(timer, &task->fifo, 1); /* 次は1を */
-					if (cursor_c >= 0) {
-						cursor_c = COL8_000000;
-					}
+          if (cursor_c >= 0) {
+  					cursor_c = COL8_000000;
+          }
 				}
 				timer_settime(timer, 50);
 			}
-			if (i == 2) {	/* カーソルON */
-				cursor_c = COL8_FFFFFF;
-			}
-			if (i == 3) {	/* カーソルOFF */
-				boxfill8(sheet->buf, sheet->bxsize, COL8_000000, cursor_x, 28, cursor_x + 7, 43);
-				cursor_c = -1;
-			}
+      if (i == 2) {
+        cursor_c = COL8_FFFFFF;
+      }
+      if (i == 3) {
+        boxfill8(sheet->buf, sheet->bxsize, COL8_000000, cursor_x, 28, cursor_x + 7, 43);
+        cursor_c = -1;
+      }
 			if (256 <= i && i <= 511) { /* キーボードデータ（タスクA経由） */
 				if (i == 8 + 256) {
 					/* バックスペース */
@@ -451,10 +452,10 @@ void console_task(struct SHEET *sheet)
 				}
 			}
 			/* カーソル再表示 */
-			if (cursor_c >= 0) {
-				boxfill8(sheet->buf, sheet->bxsize, cursor_c, cursor_x, 28, cursor_x + 7, 43);
-			}
-			sheet_refresh(sheet, cursor_x, 28, cursor_x + 8, 44);
+      if (cursor_c >= 0) {
+        boxfill8(sheet->buf, sheet->bxsize, cursor_c, cursor_x, 28, cursor_x + 7, 43);
+      }
+  		sheet_refresh(sheet, cursor_x, 28, cursor_x + 8, 44);
 		}
 	}
 }
