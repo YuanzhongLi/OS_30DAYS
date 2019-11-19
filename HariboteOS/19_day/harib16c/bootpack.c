@@ -392,13 +392,13 @@ void console_task(struct SHEET *sheet, unsigned int memtotal)
 	struct MEMMAN *memman = (struct MEMMAN *) MEMMAN_ADDR;
 	int x, y;
 	struct FILEINFO *finfo = (struct FILEINFO *) (ADR_DISKIMG + 0x002600);
-	int *fat = (int *) memman_alloc_4k(memman, 4 * 2880);
+  int *fat = (int *) memman_alloc_4k(memman, 4 * 2880);
 
 	fifo32_init(&task->fifo, 128, fifobuf, task);
 	timer = timer_alloc();
 	timer_init(timer, &task->fifo, 1);
 	timer_settime(timer, 50);
-	file_readfat(fat, (unsigned char *) (ADR_DISKIMG + 0x000200));
+  file_readfat(fat, (unsigned char *) (ADR_DISKIMG + 0x000200));
 
 	/* プロンプト表示 */
 	putfonts8_asc_sht(sheet, 8, 28, COL8_FFFFFF, COL8_000000, ">", 1);
@@ -501,7 +501,7 @@ void console_task(struct SHEET *sheet, unsigned int memtotal)
 								if ('a' <= s[y] && s[y] <= 'z') {
 									/* 小文字は大文字に直す */
 									s[y] -= 0x20;
-								} 
+								}
 								y++;
 							}
 						}
@@ -524,7 +524,7 @@ void console_task(struct SHEET *sheet, unsigned int memtotal)
 						if (x < 224 && finfo[x].name[0] != 0x00) {
 							/* ファイルが見つかった場合 */
 							p = (char *) memman_alloc_4k(memman, finfo[x].size);
-							file_loadfile(finfo[x].clustno, finfo[x].size, p, fat, (char *) (ADR_DISKIMG + 0x003e00));
+              file_loadfile(finfo[x].clustno, finfo[x].size, p, fat, (char *) (ADR_DISKIMG + 0x003e00));
 							cursor_x = 8;
 							for (y = 0; y < finfo[x].size; y++) {
 								/* 1文字ずつ出力 */
@@ -556,7 +556,7 @@ void console_task(struct SHEET *sheet, unsigned int memtotal)
 									}
 								}
 							}
-							memman_free_4k(memman, (int) p, finfo[x].size);
+              memman_free_4k(memman, (int) p, finfo[x].size);
 						} else {
 							/* ファイルが見つからなかった場合 */
 							putfonts8_asc_sht(sheet, 8, cursor_y, COL8_FFFFFF, COL8_000000, "File not found.", 15);
@@ -615,34 +615,31 @@ int cons_newline(int cursor_y, struct SHEET *sheet)
 	return cursor_y;
 }
 
-void file_readfat(int *fat, unsigned char *img)
-/* ディスクイメージ内のFATの圧縮をとく */
-{
-	int i, j = 0;
-	for (i = 0; i < 2880; i += 2) {
-		fat[i + 0] = (img[j + 0]      | img[j + 1] << 8) & 0xfff;
-		fat[i + 1] = (img[j + 1] >> 4 | img[j + 2] << 4) & 0xfff;
-		j += 3;
-	}
-	return;
-}
+void file_readfat(int *fat, unsigned char *img) {
+  int i, j = 0;
+  for (i = 0; i < 2880; i += 2) {
+    fat[i + 0] = (img[j + 0] | img[j + 1] << 8) & 0xfff;
+    fat[i + 1] = (img[j + 1] >> 4 | img[j + 2] << 4) & 0xfff;
+    j += 3;
+  }
+  return;
+};
 
-void file_loadfile(int clustno, int size, char *buf, int *fat, char *img)
-{
-	int i;
-	for (;;) {
-		if (size <= 512) {
-			for (i = 0; i < size; i++) {
-				buf[i] = img[clustno * 512 + i];
-			}
-			break;
-		}
-		for (i = 0; i < 512; i++) {
-			buf[i] = img[clustno * 512 + i];
-		}
-		size -= 512;
-		buf += 512;
-		clustno = fat[clustno];
-	}
-	return;
-}
+void file_loadfile(int clustno, int size, char *buf, int *fat, char *img) {
+  int i;
+  for (;;) {
+    if (size <= 512) {
+      for (i = 0; i < size; i++) {
+        buf[i] = img[clustno * 512 + i];
+      }
+      break;
+    }
+    for (i = 0; i < 512; i++) {
+      buf[i] = img[clustno * 512 + i];
+    }
+    size -= 512;
+    buf += 512;
+    clustno = fat[clustno];
+  }
+  return;
+};

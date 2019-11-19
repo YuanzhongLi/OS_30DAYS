@@ -400,11 +400,12 @@ void console_task(struct SHEET *sheet, unsigned int memtotal)
 	putfonts8_asc_sht(sheet, 8, 28, COL8_FFFFFF, COL8_000000, ">", 1);
 
 	for (;;) {
-		io_cli();
+		// io_cli();
 		if (fifo32_status(&task->fifo) == 0) {
 			task_sleep(task);
 			io_sti();
 		} else {
+			io_cli();
 			i = fifo32_get(&task->fifo);
 			io_sti();
 			if (i <= 1) { /* カーソル用タイマ */
@@ -497,7 +498,7 @@ void console_task(struct SHEET *sheet, unsigned int memtotal)
 								if ('a' <= s[y] && s[y] <= 'z') {
 									/* 小文字は大文字に直す */
 									s[y] -= 0x20;
-								} 
+								}
 								y++;
 							}
 						}
@@ -526,31 +527,29 @@ void console_task(struct SHEET *sheet, unsigned int memtotal)
 								/* 1文字ずつ出力 */
 								s[0] = p[x];
 								s[1] = 0;
-								if (s[0] == 0x09) {	/* タブ */
-									for (;;) {
-										putfonts8_asc_sht(sheet, cursor_x, cursor_y, COL8_FFFFFF, COL8_000000, " ", 1);
-										cursor_x += 8;
-										if (cursor_x == 8 + 240) {
-											cursor_x = 8;
-											cursor_y = cons_newline(cursor_y, sheet);
-										}
-										if (((cursor_x - 8) & 0x1f) == 0) {
-											break;	/* 32で割り切れたらbreak */
-										}
-									}
-								} else if (s[0] == 0x0a) {	/* 改行 */
-									cursor_x = 8;
-									cursor_y = cons_newline(cursor_y, sheet);
-								} else if (s[0] == 0x0d) {	/* 復帰 */
-									/* とりあえずなにもしない */
-								} else {	/* 普通の文字 */
-									putfonts8_asc_sht(sheet, cursor_x, cursor_y, COL8_FFFFFF, COL8_000000, s, 1);
-									cursor_x += 8;
-									if (cursor_x == 8 + 240) {
-										cursor_x = 8;
-										cursor_y = cons_newline(cursor_y, sheet);
-									}
-								}
+                if (s[0] == 0x09) { // タブ
+                  for (;;) {
+                    putfonts8_asc_sht(sheet, cursor_x, cursor_y, COL8_FFFFFF, COL8_000000, " ", 1);
+                    cursor_x += 8;
+                    if (cursor_x == 8 + 240) {
+                      cursor_x = 8;
+                      cursor_y = cons_newline(cursor_y, sheet);
+                    }
+                    if (((cursor_x - 8) & 0x1f) == 0) {
+                      break; // 32で割り切れたらbreak
+                    }
+                  }
+                } else if (s[0] == 0x0a) { // 改行
+                  cursor_x = 8;
+                  cursor_y = cons_newline(cursor_y, sheet);
+                } else {
+                  putfonts8_asc_sht(sheet, cursor_x, cursor_y, COL8_FFFFFF, COL8_000000, s, 1);
+                  cursor_x += 8;
+                  if (cursor_x == 8 + 240) {
+                    cursor_x = 8;
+                    cursor_y = cons_newline(cursor_y, sheet);
+                  }
+                }
 							}
 						} else {
 							/* ファイルが見つからなかった場合 */
