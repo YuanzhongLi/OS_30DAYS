@@ -148,23 +148,6 @@ void cons_newline(struct CONSOLE *cons)
 	return;
 }
 
-void cons_putstr0(struct CONSOLE *cons, char *s)
-{
-	for (; *s != 0; s++) {
-		cons_putchar(cons, *s, 1);
-	}
-	return;
-}
-
-void cons_putstr1(struct CONSOLE *cons, char *s, int l)
-{
-	int i;
-	for (i = 0; i < l; i++) {
-		cons_putchar(cons, s[i], 1);
-	}
-	return;
-}
-
 void cons_runcmd(char *cmdline, struct CONSOLE *cons, int *fat, unsigned int memtotal)
 {
 	if (strcmp(cmdline, "mem") == 0) {
@@ -218,7 +201,7 @@ void cmd_dir(struct CONSOLE *cons)
 		}
 		if (finfo[i].name[0] != 0xe5) {
 			if ((finfo[i].type & 0x18) == 0) {
-				sprintf(s, "filename.ext   %7d\n", finfo[i].size);
+				sprintf(s, "filename.ext   %7d", finfo[i].size);
 				for (j = 0; j < 8; j++) {
 					s[j] = finfo[i].name[j];
 				}
@@ -295,8 +278,22 @@ int cmd_app(struct CONSOLE *cons, int *fat, char *cmdline)
 	return 0;
 }
 
-void hrb_api(int edi, int esi, int ebp, int esp, int ebx, int edx, int ecx, int eax)
-{
+void cons_putstr0(struct CONSOLE *cons, char *s) {
+	for (; *s != 0; s++) {
+		cons_putchar(cons, *s, 1);
+	}
+	return;
+};
+
+void cons_putstr1(struct CONSOLE *cons, char *s, int l) {
+	int i;
+	for (i = 0; i < l; i++) {
+		cons_putchar(cons, s[i], 1);
+	}
+	return;
+}
+
+void hrb_api(int edi, int esi, int ebp, int esp, int ebx, int edx, int ecx, int eax) {
 	struct CONSOLE *cons = (struct CONSOLE *) *((int *) 0x0fec);
 	if (edx == 1) {
 		cons_putchar(cons, eax & 0xff, 1);
@@ -306,4 +303,4 @@ void hrb_api(int edi, int esi, int ebp, int esp, int ebx, int edx, int ecx, int 
 		cons_putstr1(cons, (char *) ebx, ecx);
 	}
 	return;
-}
+};
