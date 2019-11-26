@@ -1,7 +1,7 @@
 ; naskfunc
 ; TAB=4
 
-[FORMAT "WCOFF"]				; オブジェクトファイルを作るモード	
+[FORMAT "WCOFF"]				; オブジェクトファイルを作るモード
 [INSTRSET "i486p"]				; 486の命令まで使いたいという記述
 [BITS 32]						; 32ビットモード用の機械語を作らせる
 [FILE "naskfunc.nas"]			; ソースファイル名情報
@@ -319,80 +319,80 @@ _farcall:		; void farcall(int eip, int cs);
 
 _asm_hrb_api:
 		; 都合のいいことに最初から割り込み禁止になっている
-		PUSH	DS
-		PUSH	ES
-		PUSHAD		; 保存のためのPUSH
-		MOV		EAX,1*8
-		MOV		DS,AX			; とりあえずDSだけOS用にする
-		MOV		ECX,[0xfe4]		; OSのESP
-		ADD		ECX,-40
-		MOV		[ECX+32],ESP	; アプリのESPを保存
-		MOV		[ECX+36],SS		; アプリのSSを保存
+		PUSH  DS
+    PUSH  ES
+    PUSHAD
+    MOV   EAX,1*8
+    MOV   DS,AX ; とりあえずDSだけOS用にする
+    MOV   ECX,[0xfe4] ; OSのESP
+    ADD   ECX,-40
+    MOV   [ECX+32],ESP
+    MOV   [ECX+36],SS
 
-; PUSHADした値をシステムのスタックにコピーする
-		MOV		EDX,[ESP   ]
-		MOV		EBX,[ESP+ 4]
-		MOV		[ECX   ],EDX	; hrb_apiに渡すためコピー
-		MOV		[ECX+ 4],EBX	; hrb_apiに渡すためコピー
-		MOV		EDX,[ESP+ 8]
-		MOV		EBX,[ESP+12]
-		MOV		[ECX+ 8],EDX	; hrb_apiに渡すためコピー
-		MOV		[ECX+12],EBX	; hrb_apiに渡すためコピー
-		MOV		EDX,[ESP+16]
-		MOV		EBX,[ESP+20]
-		MOV		[ECX+16],EDX	; hrb_apiに渡すためコピー
-		MOV		[ECX+20],EBX	; hrb_apiに渡すためコピー
-		MOV		EDX,[ESP+24]
-		MOV		EBX,[ESP+28]
-		MOV		[ECX+24],EDX	; hrb_apiに渡すためコピー
-		MOV		[ECX+28],EBX	; hrb_apiに渡すためコピー
+    MOV   EDX,[ESP]
+    MOV   EBX,[ESP+4]
+    MOV   [ECX],EDX
+    MOV   [ECX+4],EBX
+    MOV   EDX,[ESP+8]
+    MOV   EBX,[ESP+12]
+    MOV   [ECX+8],EDX
+    MOV   [ECX+12],EBX
+    MOV   EDX,[ESP+16]
+    MOV   EBX,[ESP+20]
+    MOV   [ECX+16],EDX
+    MOV   [ECX+20],EBX
+    MOV   EDX,[ESP+24]
+    MOV   EBX,[ESP+28]
+    MOV   [ECX+24],EDX
+    MOV   [ECX+28],EBX
 
-		MOV		ES,AX			; 残りのセグメントレジスタもOS用にする
-		MOV		SS,AX
-		MOV		ESP,ECX
-		STI			; やっと割り込み許可
+    MOV   ES,AX
+    MOV   SS,AX
+    MOV   ESP,ECX
 
-		CALL	_hrb_api
+    STI
 
-		MOV		ECX,[ESP+32]	; アプリのESPを思い出す
-		MOV		EAX,[ESP+36]	; アプリのSSを思い出す
-		CLI
-		MOV		SS,AX
-		MOV		ESP,ECX
-		POPAD
-		POP		ES
-		POP		DS
-		IRETD		; この命令が自動でSTIしてくれる
+    CALL  _hrb_api
 
-_start_app:		; void start_app(int eip, int cs, int esp, int ds);
-		PUSHAD		; 32ビットレジスタを全部保存しておく
-		MOV		EAX,[ESP+36]	; アプリ用のEIP
-		MOV		ECX,[ESP+40]	; アプリ用のCS
-		MOV		EDX,[ESP+44]	; アプリ用のESP
-		MOV		EBX,[ESP+48]	; アプリ用のDS/SS
-		MOV		[0xfe4],ESP		; OS用のESP
-		CLI			; 切り替え中に割り込みが起きてほしくないので禁止
-		MOV		ES,BX
-		MOV		SS,BX
-		MOV		DS,BX
-		MOV		FS,BX
-		MOV		GS,BX
-		MOV		ESP,EDX
-		STI			; 切り替え完了なので割り込み可能に戻す
-		PUSH	ECX				; far-CALLのためにPUSH（cs）
-		PUSH	EAX				; far-CALLのためにPUSH（eip）
-		CALL	FAR [ESP]		; アプリを呼び出す
+    MOV   ECX,[ESP+32] ; アプリのESPを思い出す
+    MOV   EAX,[ESP+36]
+    CLI
+    MOV   SS,AX
+    MOV   ESP,ECX
+    POPAD
+    POP   ES
+    POP   DS
+    IRETD
 
-;	アプリが終了するとここに帰ってくる
 
-		MOV		EAX,1*8			; OS用のDS/SS
-		CLI			; また切り替えるので割り込み禁止
-		MOV		ES,AX
-		MOV		SS,AX
-		MOV		DS,AX
-		MOV		FS,AX
-		MOV		GS,AX
-		MOV		ESP,[0xfe4]
-		STI			; 切り替え完了なので割り込み可能に戻す
-		POPAD	; 保存しておいたレジスタを回復
-		RET
+_start_app;
+    PUSHAD
+    MOV   EAX,[ESP+36]
+    MOV   ECX,[ESP+40]
+    MOV   EDX,[ESP+44]
+    MOV   EBX,[ESP+48]
+    MOV   [0xfe4],ESP
+    CLI
+    MOV   ES,BX
+    MOV   SS,BX
+    MOV   DS,BX
+    MOV   FS,BX
+    MOV   GS,BX
+    MOV   ESP,EDX
+    STI
+    PUSH  ECX ; far-callのためpush cs
+    PUSH  EAX ; far-callのためpush eip
+    CALL  FAR [ESP]
+;　アプリが終了するとここに戻る
+    MOV   EAX,1*8
+    CLI
+    MOV   ES,AX
+    MOV   SS,AX
+    MOV   DS,AX
+    MOV   FS,AX
+    MOV   GS,AX
+    MOV   ESP,[0xfe4]
+    STI
+    POPAD
+    RET
+

@@ -258,7 +258,7 @@ int cmd_app(struct CONSOLE *cons, int *fat, char *cmdline)
 	struct FILEINFO *finfo;
 	struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *) ADR_GDT;
 	char name[18], *p, *q;
-	struct TASK *task = task_now();
+  struct TASK *task = task_now();
 	int i;
 
 	/* コマンドラインからファイル名を生成 */
@@ -311,7 +311,7 @@ int cmd_app(struct CONSOLE *cons, int *fat, char *cmdline)
 int *hrb_api(int edi, int esi, int ebp, int esp, int ebx, int edx, int ecx, int eax)
 {
 	int cs_base = *((int *) 0xfe8);
-	struct TASK *task = task_now();
+  struct TASK *task = task_now();
 	struct CONSOLE *cons = (struct CONSOLE *) *((int *) 0x0fec);
 	if (edx == 1) {
 		cons_putchar(cons, eax & 0xff, 1);
@@ -320,15 +320,16 @@ int *hrb_api(int edi, int esi, int ebp, int esp, int ebx, int edx, int ecx, int 
 	} else if (edx == 3) {
 		cons_putstr1(cons, (char *) ebx + cs_base, ecx);
 	} else if (edx == 4) {
-		return &(task->tss.esp0);
-	}
+    return &(task->tss.esp0);
+  }
 	return 0;
 }
 
 int *inthandler0d(int *esp)
 {
 	struct CONSOLE *cons = (struct CONSOLE *) *((int *) 0x0fec);
-	struct TASK *task = task_now();
+  struct TASK *task = task_now();
 	cons_putstr0(cons, "\nINT 0D :\n General Protected Exception.\n");
-	return &(task->tss.esp0);	/* 異常終了させる */
+	return &(task->tss.esp0); /* 異常終了させる */
 }
+

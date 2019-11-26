@@ -1,7 +1,7 @@
 ; naskfunc
 ; TAB=4
 
-[FORMAT "WCOFF"]				; オブジェクトファイルを作るモード	
+[FORMAT "WCOFF"]				; オブジェクトファイルを作るモード
 [INSTRSET "i486p"]				; 486の命令まで使いたいという記述
 [BITS 32]						; 32ビットモード用の機械語を作らせる
 [FILE "naskfunc.nas"]			; ソースファイル名情報
@@ -119,12 +119,12 @@ _asm_inthandler20:
 		PUSH	DS
 		PUSHAD
 		MOV		EAX,ESP
-		PUSH	EAX
+    PUSH  EAX
 		MOV		AX,SS
 		MOV		DS,AX
 		MOV		ES,AX
 		CALL	_inthandler20
-		POP		EAX
+    POP   EAX
 		POPAD
 		POP		DS
 		POP		ES
@@ -140,7 +140,7 @@ _asm_inthandler21:
 		MOV		DS,AX
 		MOV		ES,AX
 		CALL	_inthandler21
-		POP		EAX
+    POP   EAX
 		POPAD
 		POP		DS
 		POP		ES
@@ -156,7 +156,7 @@ _asm_inthandler27:
 		MOV		DS,AX
 		MOV		ES,AX
 		CALL	_inthandler27
-		POP		EAX
+    POP   EAX
 		POPAD
 		POP		DS
 		POP		ES
@@ -167,12 +167,12 @@ _asm_inthandler2c:
 		PUSH	DS
 		PUSHAD
 		MOV		EAX,ESP
-		PUSH	EAX
+		PUSH	EAX				; 割り込まれたときのESPを保存
 		MOV		AX,SS
 		MOV		DS,AX
 		MOV		ES,AX
 		CALL	_inthandler2c
-		POP		EAX
+    POP   EAX
 		POPAD
 		POP		DS
 		POP		ES
@@ -189,9 +189,9 @@ _asm_inthandler0d:
 		MOV		DS,AX
 		MOV		ES,AX
 		CALL	_inthandler0d
-		CMP		EAX,0		; ここだけ違う
-		JNE		end_app		; ここだけ違う
-		POP		EAX
+    CMP   EAX,0
+    JNE   end_app
+    POP   EAX
 		POPAD
 		POP		DS
 		POP		ES
@@ -240,27 +240,27 @@ _farcall:		; void farcall(int eip, int cs);
 		RET
 
 _asm_hrb_api:
-		STI
+    STI
 		PUSH	DS
 		PUSH	ES
 		PUSHAD		; 保存のためのPUSH
-		PUSHAD		; hrb_apiにわたすためのPUSH
-		MOV		AX,SS
-		MOV		DS,AX		; OS用のセグメントをDSとESにも入れる
-		MOV		ES,AX
-		CALL	_hrb_api
-		CMP		EAX,0		; EAXが0でなければアプリ終了処理
-		JNE		end_app
-		ADD		ESP,32
-		POPAD
-		POP		ES
-		POP		DS
-		IRETD
+    PUSHAD    ; hrb_apiに渡すためのPUSH
+    MOV   AX,SS
+    MOV   DS,AX
+    MOV   ES,AX
+    CALL  _hrb_api
+    CMP   EAX,0
+    JNE   end_app
+    ADD   ESP,32
+    POPAD
+    POP   ES
+    POP   DS
+    IRETD
 end_app:
-;	EAXはtss.esp0の番地
-		MOV		ESP,[EAX]
-		POPAD
-		RET					; cmd_appへ帰る
+
+    MOV   ESP,[EAX]
+    POPAD
+    RET
 
 _start_app:		; void start_app(int eip, int cs, int esp, int ds, int *tss_esp0);
 		PUSHAD		; 32ビットレジスタを全部保存しておく
@@ -268,19 +268,19 @@ _start_app:		; void start_app(int eip, int cs, int esp, int ds, int *tss_esp0);
 		MOV		ECX,[ESP+40]	; アプリ用のCS
 		MOV		EDX,[ESP+44]	; アプリ用のESP
 		MOV		EBX,[ESP+48]	; アプリ用のDS/SS
-		MOV		EBP,[ESP+52]	; tss.esp0の番地
-		MOV		[EBP  ],ESP		; OS用のESPを保存
-		MOV		[EBP+4],SS		; OS用のSSを保存
+    MOV   EBP,[ESP+52]  ; tss.esp0の番地
+		MOV		[EBP],ESP		  ; OS用のESPを保存
+    MOV   [EBP+4],SS    ; OS用のSSを保存
 		MOV		ES,BX
 		MOV		DS,BX
 		MOV		FS,BX
 		MOV		GS,BX
-;	以下はRETFでアプリに行かせるためのスタック調整
-		OR		ECX,3			; アプリ用のセグメント番号に3をORする
-		OR		EBX,3			; アプリ用のセグメント番号に3をORする
-		PUSH	EBX				; アプリのSS
-		PUSH	EDX				; アプリのESP
-		PUSH	ECX				; アプリのCS
-		PUSH	EAX				; アプリのEIP
-		RETF
-;	アプリが終了してもここには来ない
+; 以下はRETFでアプリに行かせるためのスタック調整
+    OR    ECX,3
+    OR    EBX,3
+    PUSH  EBX
+    PUSH  EDX
+    PUSH  ECX
+    PUSH  EAX
+    RETF
+;	アプリが終了してもここにはこない
