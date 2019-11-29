@@ -1,7 +1,7 @@
 ; naskfunc
 ; TAB=4
 
-[FORMAT "WCOFF"]				; オブジェクトファイルを作るモード	
+[FORMAT "WCOFF"]				; オブジェクトファイルを作るモード
 [INSTRSET "i486p"]				; 486の命令まで使いたいという記述
 [BITS 32]						; 32ビットモード用の機械語を作らせる
 [FILE "naskfunc.nas"]			; ソースファイル名情報
@@ -179,24 +179,24 @@ _asm_inthandler2c:
 		IRETD
 
 _asm_inthandler0c:
-		STI
-		PUSH	ES
-		PUSH	DS
-		PUSHAD
-		MOV		EAX,ESP
-		PUSH	EAX
-		MOV		AX,SS
-		MOV		DS,AX
-		MOV		ES,AX
-		CALL	_inthandler0c
-		CMP		EAX,0
-		JNE		end_app
-		POP		EAX
-		POPAD
-		POP		DS
-		POP		ES
-		ADD		ESP,4			; INT 0x0c でも、これが必要
-		IRETD
+    STI
+    PUSH  ES
+    PUSH  DS
+    PUSHAD
+    MOV   EAX,ESP
+    PUSH  EAX
+    MOV   AX,SS
+    MOV   DS,AX
+    MOV   ES,AX
+    CALL  _inthandler0c
+    CMP   EAX,0
+    JNE   end_app
+    POP   EAX
+    POPAD
+    POP   DS
+    POP   ES
+    ADD   ESP,4
+    IRETD
 
 _asm_inthandler0d:
 		STI

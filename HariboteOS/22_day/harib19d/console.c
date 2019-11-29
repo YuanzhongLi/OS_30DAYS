@@ -293,8 +293,8 @@ int cmd_app(struct CONSOLE *cons, int *fat, char *cmdline)
 		if (finfo->size >= 8 && strncmp(p + 4, "Hari", 4) == 0) {
 			start_app(0x1b, 1003 * 8, 64 * 1024, 1004 * 8, &(task->tss.esp0));
 		} else {
-			start_app(0, 1003 * 8, 64 * 1024, 1004 * 8, &(task->tss.esp0));
-		}
+      start_app(0, 1003 * 8, 64 * 1024, 1004 * 8, &(task->tss.esp0));
+    }
 		memman_free_4k(memman, (int) p, finfo->size);
 		memman_free_4k(memman, (int) q, 64 * 1024);
 		cons_newline(cons);

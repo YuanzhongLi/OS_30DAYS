@@ -1,7 +1,7 @@
 ; naskfunc
 ; TAB=4
 
-[FORMAT "WCOFF"]				; オブジェクトファイルを作るモード	
+[FORMAT "WCOFF"]				; オブジェクトファイルを作るモード
 [INSTRSET "i486p"]				; 486の命令まで使いたいという記述
 [BITS 32]						; 32ビットモード用の機械語を作らせる
 [FILE "naskfunc.nas"]			; ソースファイル名情報
@@ -209,8 +209,8 @@ _asm_inthandler0d:
 		MOV		DS,AX
 		MOV		ES,AX
 		CALL	_inthandler0d
-		CMP		EAX,0			; ここだけ違う
-		JNE		_asm_end_app	; ここだけ違う
+		CMP		EAX,0		; ここだけ違う
+		JNE		_asm_end_app		; ここだけ違う
 		POP		EAX
 		POPAD
 		POP		DS
@@ -279,7 +279,7 @@ _asm_hrb_api:
 _asm_end_app:
 ;	EAXはtss.esp0の番地
 		MOV		ESP,[EAX]
-		MOV		DWORD [EAX+4],0
+    MOV   DWORD [EAX+4],0
 		POPAD
 		RET					; cmd_appへ帰る
 
