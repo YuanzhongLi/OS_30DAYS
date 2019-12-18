@@ -96,8 +96,8 @@ void HariMain(void)
 		task_run(task_cons[i], 2, 2); /* level=2, priority=2 */
 		sht_cons[i]->task = task_cons[i];
 		sht_cons[i]->flags |= 0x20;	/* カーソルあり */
-		cons_fifo[i] = (int *) memman_alloc_4k(memman, 128 * 4);
-		fifo32_init(&task_cons[i]->fifo, 128, cons_fifo[i], task_cons[i]);
+    cons_fifo[i] = (int *) memman_alloc_4k(memman, 128 * 4);
+    fifo32_init(&task_cons[i]->fifo, 128, cons_fifo[i], task_cons[i]);
 	}
 
 	/* sht_mouse */

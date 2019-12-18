@@ -233,14 +233,14 @@ void HariMain(void)
 					fifo32_put(&keycmd, key_leds);
 				}
 				if (i == 256 + 0x3b && key_shift != 0) {
-					task = key_win->task;
-					if (task != 0 && task->tss.ss0 != 0) {	/* Shift+F1 */
-						cons_putstr0(task->cons, "\nBreak(key) :\n");
-						io_cli();	/* 強制終了処理中にタスクが変わると困るから */
-						task->tss.eax = (int) &(task->tss.esp0);
-						task->tss.eip = (int) asm_end_app;
-						io_sti();
-					}
+          task = key_win->task;
+          if (task != 0 && task->tss.ss0 != 0) { /* Shift+F1 */
+            cons_putstr0(task->cons, "\nBreak(key) :\n");
+            io_cli();	/* 強制終了処理中にタスクが変わると困るから */
+            task->tss.eax = (int) &(task->tss.esp0);
+            task->tss.eip = (int) asm_end_app;
+            io_sti();
+          }
 				}
 				if (i == 256 + 0x57) {	/* F11 */
 					sheet_updown(shtctl->sheets[1], shtctl->top - 1);
@@ -299,7 +299,7 @@ void HariMain(void)
 										if (sht->bxsize - 21 <= x && x < sht->bxsize - 5 && 5 <= y && y < 19) {
 											/* 「×」ボタンクリック */
 											if ((sht->flags & 0x10) != 0) {		/* アプリが作ったウィンドウか？ */
-												task = sht->task;
+                        task = sht->task;
 												cons_putstr0(task->cons, "\nBreak(mouse) :\n");
 												io_cli();	/* 強制終了処理中にタスクが変わると困るから */
 												task->tss.eax = (int) &(task->tss.esp0);

@@ -78,27 +78,27 @@ void HariMain(void)
 	init_screen8(buf_back, binfo->scrnx, binfo->scrny);
 
 	/* sht_cons */
-	for (i = 0; i < 2; i++) {
-		sht_cons[i] = sheet_alloc(shtctl);
-		buf_cons[i] = (unsigned char *) memman_alloc_4k(memman, 256 * 165);
-		sheet_setbuf(sht_cons[i], buf_cons[i], 256, 165, -1); /* 透明色なし */
-		make_window8(buf_cons[i], 256, 165, "console", 0);
-		make_textbox8(sht_cons[i], 8, 28, 240, 128, COL8_000000);
-		task_cons[i] = task_alloc();
-		task_cons[i]->tss.esp = memman_alloc_4k(memman, 64 * 1024) + 64 * 1024 - 12;
-		task_cons[i]->tss.eip = (int) &console_task;
-		task_cons[i]->tss.es = 1 * 8;
-		task_cons[i]->tss.cs = 2 * 8;
-		task_cons[i]->tss.ss = 1 * 8;
-		task_cons[i]->tss.ds = 1 * 8;
-		task_cons[i]->tss.fs = 1 * 8;
-		task_cons[i]->tss.gs = 1 * 8;
-		*((int *) (task_cons[i]->tss.esp + 4)) = (int) sht_cons[i];
-		*((int *) (task_cons[i]->tss.esp + 8)) = memtotal;
-		task_run(task_cons[i], 2, 2); /* level=2, priority=2 */
-		sht_cons[i]->task = task_cons[i];
-		sht_cons[i]->flags |= 0x20;	/* カーソルあり */
-	}
+  for (i = 0; i < 2; i++) {
+    sht_cons[i] = sheet_alloc(shtctl);
+    buf_cons[i] = (unsigned char *) memman_alloc_4k(memman, 256 * 165);
+    sheet_setbuf(sht_cons[i], buf_cons[i], 256, 165, -1); /* 透明色なし */
+    make_window8(buf_cons[i], 256, 165, "console", 0);
+    make_textbox8(sht_cons[i], 8, 28, 240, 128, COL8_000000);
+    task_cons[i] = task_alloc();
+    task_cons[i]->tss.esp = memman_alloc_4k(memman, 64 * 1024) + 64 * 1024 - 12;
+    task_cons[i]->tss.eip = (int) &console_task;
+    task_cons[i]->tss.es = 1 * 8;
+    task_cons[i]->tss.cs = 2 * 8;
+    task_cons[i]->tss.ss = 1 * 8;
+    task_cons[i]->tss.ds = 1 * 8;
+    task_cons[i]->tss.fs = 1 * 8;
+    task_cons[i]->tss.gs = 1 * 8;
+    *((int *) (task_cons[i]->tss.esp + 4)) = (int) sht_cons[i];
+    *((int *) (task_cons[i]->tss.esp + 8)) = memtotal;
+    task_run(task_cons[i], 2, 2); /* level=2, priority=2 */
+    sht_cons[i]->task = task_cons[i];
+    sht_cons[i]->flags |= 0x20;
+  }
 
 	/* sht_win */
 	sht_win   = sheet_alloc(shtctl);
@@ -120,15 +120,15 @@ void HariMain(void)
 	my = (binfo->scrny - 28 - 16) / 2;
 
 	sheet_slide(sht_back,  0,  0);
-	sheet_slide(sht_cons[1], 56,  6);
-	sheet_slide(sht_cons[0],  8,  2);
+	sheet_slide(sht_cons[1], 56, 6);
+	sheet_slide(sht_cons[0], 8, 2);
 	sheet_slide(sht_win,  64, 56);
 	sheet_slide(sht_mouse, mx, my);
-	sheet_updown(sht_back,     0);
+	sheet_updown(sht_back,  0);
 	sheet_updown(sht_cons[1],  1);
 	sheet_updown(sht_cons[0],  2);
-	sheet_updown(sht_win,      3);
-	sheet_updown(sht_mouse,    4);
+	sheet_updown(sht_win,   3);
+	sheet_updown(sht_mouse, 4);
 	key_win = sht_win;
 
 	/* 最初にキーボード状態との食い違いがないように、設定しておくことにする */

@@ -113,8 +113,8 @@ void HariMain(void)
 	sheet_updown(sht_cons[1],  1);
 	sheet_updown(sht_cons[0],  2);
 	sheet_updown(sht_mouse,    3);
-	key_win = sht_cons[0];
-	keywin_on(key_win);
+  key_win = sht_cons[0];
+  keywin_on(key_win);
 
 	/* 最初にキーボード状態との食い違いがないように、設定しておくことにする */
 	fifo32_put(&keycmd, KEYCMD_LED);
@@ -136,7 +136,7 @@ void HariMain(void)
 			io_sti();
 			if (key_win->flags == 0) {	/* ウィンドウが閉じられた */
 				key_win = shtctl->sheets[shtctl->top - 1];
-				keywin_on(key_win);
+        keywin_on(key_win);
 			}
 			if (256 <= i && i <= 511) { /* キーボードデータ */
 				if (i < 0x80 + 256) { /* キーコードを文字コードに変換 */
@@ -154,7 +154,7 @@ void HariMain(void)
 						s[0] += 0x20;	/* 大文字を小文字に変換 */
 					}
 				}
-				if (s[0] != 0) { /* 通常文字、バックスペース、Enter */
+				if (s[0] != 0) { /* 通常文字 */
 					fifo32_put(&key_win->task->fifo, s[0] + 256);
 				}
 				if (i == 256 + 0x0f) {	/* Tab */
@@ -288,18 +288,18 @@ void HariMain(void)
 void keywin_off(struct SHEET *key_win)
 {
 	change_wtitle8(key_win, 0);
-	if ((key_win->flags & 0x20) != 0) {
+  if ((key_win->flags & 0x20) != 0) {
 		fifo32_put(&key_win->task->fifo, 3); /* コンソールのカーソルOFF */
-	}
+  }
 	return;
 }
 
 void keywin_on(struct SHEET *key_win)
 {
 	change_wtitle8(key_win, 1);
-	if ((key_win->flags & 0x20) != 0) {
-		fifo32_put(&key_win->task->fifo, 2); /* コンソールのカーソルON */
-	}
+  if ((key_win->flags & 0x20) != 0) {
+    fifo32_put(&key_win->task->fifo, 2); /* コンソールのカーソルON */
+  }
 	return;
 }
 
