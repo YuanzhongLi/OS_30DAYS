@@ -199,7 +199,7 @@ void HariMain(void)
 						io_sti();
 					}
 				}
-				if (i == 256 + 0x3c && key_shift != 0) {	/* Shift+F2 */
+				if (i == 256 + 0x0f && key_shift != 0) {	/* Shift+Tab */
 					/* 新しく作ったコンソールを入力選択状態にする（そのほうが親切だよね？） */
 					if (key_win != 0) {
 						keywin_off(key_win);
@@ -270,12 +270,12 @@ void HariMain(void)
 												task->tss.eax = (int) &(task->tss.esp0);
 												task->tss.eip = (int) asm_end_app;
 												io_sti();
-											} else {	/* コンソール */
-												task = sht->task;
-												io_cli();
-												fifo32_put(&task->fifo, 4);
-												io_sti();
-											}
+											} else {
+                        task = sht->task;
+                        io_cli();
+                        fifo32_put(&task->fifo, 4);
+                        io_sti();
+                      }
 										}
 										break;
 									}

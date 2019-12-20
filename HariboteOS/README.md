@@ -19,4 +19,5 @@
 - ファイルがbootpack_ans.c や bootpack.cのようにあるがこれはbootpack_ans.cは正しいコードで, bootpack.cは私が演習する際に1個前のバージョンをコピーしてそこから書き足して完成させたものである
 同様に演習して行くのがやりやすいと思う
 - 日ごとにREADME.mdがあり,その単元の内容を軽くメモしてあるので参考までに
-
+- 22dayの強制終了はshift + command(5B)としている
+- 26dayのconsoleを開くはshift + Tab(0F)としている

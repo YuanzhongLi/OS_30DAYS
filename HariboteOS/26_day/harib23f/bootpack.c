@@ -192,12 +192,12 @@ void HariMain(void)
 						io_sti();
 					}
 				}
-				if (i == 256 + 0x3c && key_shift != 0) {	/* Shift+F2 */
+				if (i == 256 + 0x0f && key_shift != 0) {	/* Shift+Tab */
 					/* 新しく作ったコンソールを入力選択状態にする（そのほうが親切だよね？） */
 					keywin_off(key_win);
 					key_win = open_console(shtctl, memtotal);
-					sheet_slide(key_win, 32, 4);
-					sheet_updown(key_win, shtctl->top);
+          sheet_slide(key_win, 32, 4);
+          sheet_updown(key_win, shtctl->top);
 					keywin_on(key_win);
 				}
 				if (i == 256 + 0x57) {	/* F11 */

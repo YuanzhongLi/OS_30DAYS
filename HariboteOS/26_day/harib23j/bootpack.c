@@ -198,7 +198,7 @@ void HariMain(void)
 						io_sti();
 					}
 				}
-				if (i == 256 + 0x3c && key_shift != 0) {	/* Shift+F2 */
+				if (i == 256 + 0x0f && key_shift != 0) {	/* Shift+Tab */
 					/* 新しく作ったコンソールを入力選択状態にする（そのほうが親切だよね？） */
 					if (key_win != 0) {
 						keywin_off(key_win);
@@ -300,8 +300,8 @@ void HariMain(void)
 			} else if (768 <= i && i <= 1023) {	/* コンソール終了処理 */
 				close_console(shtctl->sheets0 + (i - 768));
 			} else if (1024 <= i && i <= 2023) {
-				close_constask(taskctl->tasks0 + (i - 1024));
-			}
+        close_constask(taskctl->tasks0 + (i - 1024));
+      }
 		}
 	}
 }
@@ -326,10 +326,10 @@ void keywin_on(struct SHEET *key_win)
 
 struct TASK *open_constask(struct SHEET *sht, unsigned int memtotal)
 {
-	struct MEMMAN *memman = (struct MEMMAN *) MEMMAN_ADDR;
-	struct TASK *task = task_alloc();
-	int *cons_fifo = (int *) memman_alloc_4k(memman, 128 * 4);
-	task->cons_stack = memman_alloc_4k(memman, 64 * 1024);
+  struct MEMMAN *memman = (struct MEMMAN *) MEMMAN_ADDR;
+  struct TASK *task = task_alloc();
+  int *cons_fifo = (int *) memman_alloc_4k(memman, 128 * 4);
+  task->cons_stack = memman_alloc_4k(memman, 64 * 1024);
 	task->tss.esp = task->cons_stack + 64 * 1024 - 12;
 	task->tss.eip = (int) &console_task;
 	task->tss.es = 1 * 8;
@@ -342,7 +342,7 @@ struct TASK *open_constask(struct SHEET *sht, unsigned int memtotal)
 	*((int *) (task->tss.esp + 8)) = memtotal;
 	task_run(task, 2, 2); /* level=2, priority=2 */
 	fifo32_init(&task->fifo, 128, cons_fifo, task);
-	return task;
+  return task;
 }
 
 struct SHEET *open_console(struct SHTCTL *shtctl, unsigned int memtotal)
