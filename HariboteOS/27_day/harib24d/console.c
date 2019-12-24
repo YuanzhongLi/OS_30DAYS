@@ -94,7 +94,7 @@ void console_task(struct SHEET *sheet, int memtotal)
 			/* カーソル再表示 */
 			if (cons.sht != 0) {
 				if (cons.cur_c >= 0) {
-					boxfill8(cons.sht->buf, cons.sht->bxsize, cons.cur_c, 
+					boxfill8(cons.sht->buf, cons.sht->bxsize, cons.cur_c,
 						cons.cur_x, cons.cur_y, cons.cur_x + 7, cons.cur_y + 15);
 				}
 				sheet_refresh(cons.sht, cons.cur_x, cons.cur_y, cons.cur_x + 8, cons.cur_y + 16);
@@ -333,6 +333,7 @@ int cmd_app(struct CONSOLE *cons, int *fat, char *cmdline)
 {
 	struct MEMMAN *memman = (struct MEMMAN *) MEMMAN_ADDR;
 	struct FILEINFO *finfo;
+	struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *) ADR_GDT;
 	char name[18], *p, *q;
 	struct TASK *task = task_now();
 	int i, segsiz, datsiz, esp, dathrb;

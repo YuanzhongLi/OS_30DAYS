@@ -188,7 +188,7 @@ void HariMain(void)
 					fifo32_put(&keycmd, KEYCMD_LED);
 					fifo32_put(&keycmd, key_leds);
 				}
-				if (i == 256 + 0x3b && key_shift != 0 && key_win != 0) {	/* Shift+F1 */
+				if (i == 256 + 0x5b && key_shift != 0 && key_win != 0) {	/* Shift+command */
 					task = key_win->task;
 					if (task != 0 && task->tss.ss0 != 0) {
 						cons_putstr0(task->cons, "\nBreak(key) :\n");
@@ -199,7 +199,7 @@ void HariMain(void)
 						task_run(task, -1, 0);	/* 終了処理を確実にやらせるために、寝ていたら起こす */
 					}
 				}
-				if (i == 256 + 0x3c && key_shift != 0) {	/* Shift+F2 */
+				if (i == 256 + 0x0f && key_shift != 0) {	/* Shift+Tab */
 					/* 新しく作ったコンソールを入力選択状態にする（そのほうが親切だよね？） */
 					if (key_win != 0) {
 						keywin_off(key_win);
