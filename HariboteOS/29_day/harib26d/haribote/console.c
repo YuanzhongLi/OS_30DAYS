@@ -109,7 +109,7 @@ void console_task(struct SHEET *sheet, int memtotal)
 			/* カーソル再表示 */
 			if (cons.sht != 0) {
 				if (cons.cur_c >= 0) {
-					boxfill8(cons.sht->buf, cons.sht->bxsize, cons.cur_c, 
+					boxfill8(cons.sht->buf, cons.sht->bxsize, cons.cur_c,
 						cons.cur_x, cons.cur_y, cons.cur_x + 7, cons.cur_y + 15);
 				}
 				sheet_refresh(cons.sht, cons.cur_x, cons.cur_y, cons.cur_x + 8, cons.cur_y + 16);
@@ -487,16 +487,16 @@ int *hrb_api(int edi, int esi, int ebp, int esp, int ebx, int edx, int ecx, int 
 		sht = (struct SHEET *) (ebx & 0xfffffffe);
 		hrb_api_linewin(sht, eax, ecx, esi, edi, ebp);
 		if ((ebx & 1) == 0) {
-			if (eax > esi) {
-				i = eax;
-				eax = esi;
-				esi = i;
-			}
-			if (ecx > edi) {
-				i = ecx;
-				ecx = edi;
-				edi = i;
-			}
+      if (eax > esi) {
+        i = eax;
+        eax = esi;
+        esi = i;
+      }
+      if (ecx > edi) {
+        i = ecx;
+        ecx = edi;
+        edi = i;
+      }
 			sheet_refresh(sht, eax, ecx, esi + 1, edi + 1);
 		}
 	} else if (edx == 14) {

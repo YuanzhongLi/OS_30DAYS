@@ -109,7 +109,7 @@ void console_task(struct SHEET *sheet, int memtotal)
 			/* カーソル再表示 */
 			if (cons.sht != 0) {
 				if (cons.cur_c >= 0) {
-					boxfill8(cons.sht->buf, cons.sht->bxsize, cons.cur_c, 
+					boxfill8(cons.sht->buf, cons.sht->bxsize, cons.cur_c,
 						cons.cur_x, cons.cur_y, cons.cur_x + 7, cons.cur_y + 15);
 				}
 				sheet_refresh(cons.sht, cons.cur_x, cons.cur_y, cons.cur_x + 8, cons.cur_y + 16);
@@ -375,7 +375,7 @@ int cmd_app(struct CONSOLE *cons, int *fat, char *cmdline)
 
 	if (finfo != 0) {
 		/* ファイルが見つかった場合 */
-		appsiz = finfo->size;
+    appsiz = finfo->size;
 		p = file_loadfile2(finfo->clustno, &appsiz, fat);
 		if (appsiz >= 36 && strncmp(p + 4, "Hari", 4) == 0 && *p == 0x00) {
 			segsiz = *((int *) (p + 0x0000));
@@ -384,8 +384,8 @@ int cmd_app(struct CONSOLE *cons, int *fat, char *cmdline)
 			dathrb = *((int *) (p + 0x0014));
 			q = (char *) memman_alloc_4k(memman, segsiz);
 			task->ds_base = (int) q;
-			set_segmdesc(task->ldt + 0, appsiz - 1, (int) p, AR_CODE32_ER + 0x60);
-			set_segmdesc(task->ldt + 1, segsiz - 1, (int) q, AR_DATA32_RW + 0x60);
+			set_segmdesc(task->ldt + 0, finfo->size - 1, (int) p, AR_CODE32_ER + 0x60);
+			set_segmdesc(task->ldt + 1, segsiz - 1,      (int) q, AR_DATA32_RW + 0x60);
 			for (i = 0; i < datsiz; i++) {
 				q[esp + i] = p[dathrb + i];
 			}

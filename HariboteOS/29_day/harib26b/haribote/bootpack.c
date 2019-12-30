@@ -111,10 +111,10 @@ void HariMain(void)
 
 	finfo = file_search("nihongo.fnt", (struct FILEINFO *) (ADR_DISKIMG + 0x002600), 224);
 	if (finfo != 0) {
-		i = finfo->size;
-		nihongo = file_loadfile2(finfo->clustno, &i, fat);
+    i = finfo->size;
+    nihongo = file_loadfile2(finfo->clustno, &i, fat);
 	} else {
-		nihongo = (unsigned char *) memman_alloc_4k(memman, 16 * 256 + 32 * 94 * 47);
+    nihongo = (unsigned char *) memman_alloc_4k(memman, 16 * 256 + 32 * 94 * 47);
 		for (i = 0; i < 16 * 256; i++) {
 			nihongo[i] = hankaku[i]; /* フォントがなかったので半角部分をコピー */
 		}

@@ -51,7 +51,7 @@ struct FILEINFO *file_search(char *name, struct FILEINFO *finfo, int max)
 			if ('a' <= s[j] && s[j] <= 'z') {
 				/* 小文字は大文字に直す */
 				s[j] -= 0x20;
-			} 
+			}
 			j++;
 		}
 	}
@@ -75,20 +75,20 @@ next:
 
 char *file_loadfile2(int clustno, int *psize, int *fat)
 {
-	int size = *psize, size2;
-	struct MEMMAN *memman = (struct MEMMAN *) MEMMAN_ADDR;
-	char *buf, *buf2;
-	buf = (char *) memman_alloc_4k(memman, size);
-	file_loadfile(clustno, size, buf, fat, (char *) (ADR_DISKIMG + 0x003e00));
-	if (size >= 17) {
-		size2 = tek_getsize(buf);
-		if (size2 > 0) {	/* tek圧縮がかかっていた */
-			buf2 = (char *) memman_alloc_4k(memman, size2);
-			tek_decomp(buf, buf2, size2);
-			memman_free_4k(memman, (int) buf, size);
-			buf = buf2;
-			*psize = size2;
-		}
-	}
-	return buf;
-}
+  int size = *psize, size2;
+  struct MEMMAN *memman = (struct MEMMAN *) MEMMAN_ADDR;
+  char *buf, *buf2;
+  buf = (char *) memman_alloc_4k(memman, size);
+  file_loadfile(clustno, size, buf, fat, (char *) (ADR_DISKIMG + 0x003e00));
+  if (size >= 17) {
+    size2 = tek_getsize(buf);
+    if (size2 > 0) {
+      buf2 = (char *) memman_alloc_4k(memman, size2);
+      tek_decomp(buf, buf2, size2);
+      memman_free_4k(memman, (int) buf, size);
+      buf = buf2;
+      *psize = size2;
+    }
+  }
+  return buf;
+};
